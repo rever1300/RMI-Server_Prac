@@ -1,7 +1,7 @@
 # RMI-Teacher_Student_Prac
 This code describes the functionality of an exam simulator using RMI (client-server approach).
 
-#####The procedure is given by the next steps:
+##### The procedure is given by the next steps:
 
 * The professor uploads a csv file that contains the questions, the choices and the correct answer in this format:
 
