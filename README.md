@@ -1,4 +1,4 @@
-# RMI-Teacher_Student_Prac
+# RMI-Teacher_Student_Prac (SERVER)
 This code describes the functionality of an exam simulator using RMI (client-server approach).
 
 ##### The procedure is given by the next steps:
