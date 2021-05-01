@@ -1,4 +1,8 @@
 package Common;
 
-public interface StudentInt {
+import java.rmi.Remote;
+
+public interface StudentInt extends Remote {
+    void sendQuestion(StudentInt student, String question);
+    void sendMark(StudentInt student, int mark);
 }
