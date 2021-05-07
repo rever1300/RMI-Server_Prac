@@ -6,12 +6,12 @@ public class Interrupted {
     //variable to change when start
     public static boolean start = false;
 
-    private static class Interrupt extends Thread {
+    public static class Interrupt extends Thread {
         String interrupt_key = null;
         Object semaphore = null;
 
         //semaphore must be the syncronized object
-        private Interrupt(Object semaphore, String interrupt_key) {
+        public Interrupt(Object semaphore, String interrupt_key) {
             this.semaphore = semaphore;
             this.interrupt_key = interrupt_key;
         }
