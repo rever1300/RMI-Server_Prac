@@ -7,6 +7,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Server {
+
+
+
+
     private static Registry startRegistry(Integer port)
             throws RemoteException {
         if(port == null) {
