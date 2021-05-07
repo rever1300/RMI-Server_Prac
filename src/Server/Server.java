@@ -1,10 +1,13 @@
 package Server;
 
 import Common.ProfessorInt;
+import ExamModels.Exam;
+import ExamModels.FinalExamsFile;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Server {
@@ -60,9 +63,12 @@ public class Server {
 
     public static void main(String args[]) {
         Scanner pathInput = new Scanner(System.in);
-        String startWord = "start";
-        Object obj = new Object();
-        Interrupt interrupt = new Interrupt(obj, startWord);
+        String startWord1 = "START";
+        Object obj1 = new Object();
+        String startWord2 = "FINISH";
+        Object obj2 = new Object();
+        Interrupt interrupt1 = new Interrupt(obj1, startWord1);
+        Interrupt interrupt2 = new Interrupt(obj2, startWord2);
 
         try {
             Registry registry = startRegistry(null);
@@ -73,7 +79,38 @@ public class Server {
 
             registry.bind("EXAM", (ProfessorInt) pImp);
             System.out.print("Beginning registering...");
+            interrupt1.start();
+            synchronized (obj1) {
+                while (!start) {
+                    System.out.print("Write \"" + startWord1 + "\" to start the exam");
+                    /*CODE*/
+                    obj1.wait();
+                }
+            }
 
+            pImp.noRegistry(); /*To stop the registering time*/
+            pImp.startExam();
+
+
+            Examination examination = new Examination(pImp);
+            examination.start();
+            System.out.print("The exam starts now! Good Luck");
+            start = false;
+            interrupt1.start();
+            synchronized (obj2) {
+                while (!start) {
+                    System.out.print("Write \"" + startWord2 + "\" to finish the exam");
+                    /*CODE*/
+                    obj2.wait();
+                }
+            }
+            examination.interrupt();
+
+            pImp.examFinished();
+            HashMap<String, Exam> examsCompleted = examination.finishExam();
+            System.out.print("The exam session finished!");
+
+            FinalExamsFile.storeExam("marks.csv", examsCompleted);
 
         } catch (Exception e) {
             System.err.println("Server exception" + e.toString());

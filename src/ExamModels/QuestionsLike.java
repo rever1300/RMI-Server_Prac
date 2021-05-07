@@ -22,6 +22,7 @@ public class QuestionsLike implements Serializable {
         this.answer = answer;
     }
 
+
     public int getAnswer() {
         return this.answer;
     }
