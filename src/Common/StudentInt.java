@@ -1,8 +1,13 @@
 package Common;
 
+import ExamModels.QuestionsLike;
+
 import java.rmi.Remote;
 
 public interface StudentInt extends Remote {
-    void sendQuestion(StudentInt student, String question);
+    void sendQuestion(QuestionsLike questionsLike);
+    void startExam(String message);
+    void examFinished(int mark, String message);
+    void cantRegister(String message);
     void sendMark(StudentInt student, int mark);
 }

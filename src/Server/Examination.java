@@ -15,7 +15,7 @@ public class Examination extends Thread {
     @Override
     public void run() {
         try {
-            while (this.pImp.finished()) {
+            while (!this.pImp.finished()) {
                 synchronized (this.pImp) {
                     this.pImp.wait();
                     String studentID = this.pImp.getStudentID();
