@@ -61,7 +61,7 @@ public class Server {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String []args) {
         Scanner pathInput = new Scanner(System.in);
         String startWord1 = "START";
         Object obj1 = new Object();
@@ -77,13 +77,12 @@ public class Server {
             System.out.print("Server initializing");
             pImp.uploadExam(pathInput.nextLine());
 
-            registry.bind("EXAM", (ProfessorInt) pImp);
+            registry.bind("EXAM", pImp);
             System.out.print("Beginning registering...");
             interrupt1.start();
             synchronized (obj1) {
                 while (!start) {
                     System.out.print("Write \"" + startWord1 + "\" to start the exam");
-                    /*CODE*/
                     obj1.wait();
                 }
             }
@@ -96,17 +95,16 @@ public class Server {
             examination.start();
             System.out.print("The exam starts now! Good Luck");
             start = false;
-            interrupt1.start();
+            interrupt2.start();
             synchronized (obj2) {
                 while (!start) {
                     System.out.print("Write \"" + startWord2 + "\" to finish the exam");
-                    /*CODE*/
                     obj2.wait();
                 }
             }
             examination.interrupt();
-
             pImp.examFinished();
+
             HashMap<String, Exam> examsCompleted = examination.finishExam();
             System.out.print("The exam session finished!");
 

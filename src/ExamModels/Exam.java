@@ -19,6 +19,13 @@ public class Exam {
 
         this.questionsLikeListIterator = questionsLikes.listIterator();
     }
+    public Exam(List<QuestionsLike> questionsLikes, HashMap<Integer, Integer> answers, int mark){
+        this.questionsLikes = questionsLikes;
+        this.answers = answers;
+        this.mark = mark;
+
+        this.questionsLikeListIterator = questionsLikes.listIterator();
+    }
 
     public Integer getMark() {
         return this.mark;
@@ -42,6 +49,10 @@ public class Exam {
 
     public void toAnswer(QuestionsLike questionsLike){
         if(answerCorrect(questionsLike)) markUp();
+    }
+
+    public Exam examInstance(){
+        return new Exam(this.questionsLikes, this.answers, this.mark);
     }
 }
 

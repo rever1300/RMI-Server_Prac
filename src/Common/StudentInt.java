@@ -8,6 +8,5 @@ public interface StudentInt extends Remote {
     void sendQuestion(QuestionsLike questionsLike);
     void startExam(String message);
     void examFinished(int mark, String message);
-    void cantRegister(String message);
-    void sendMark(StudentInt student, int mark);
+    void RegisteredFailed(String message);
 }
