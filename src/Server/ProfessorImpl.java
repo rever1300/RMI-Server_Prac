@@ -87,6 +87,11 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
 
     }
 
+    public synchronized void examFinishedInterrupted(String student){
+        this.examsIP--;
+        examFinished(student);
+    }
+
     public synchronized void examFinished(String student) {
         try {
             this.students.get(student).examFinished((this.studentExams.get(student).getMark()), "YOUR EXAM HAS FINISHED!!");
@@ -109,7 +114,7 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
         if (this.registry) {
             this.students.put(name,student);
             this.numberOfStudents++;
-            System.out.print("There are "+ numberOfStudents + " students");
+            System.out.print("There are "+ numberOfStudents + " students\n");
             this.studentExams.put(name ,this.exam.examInstance());
         } else {
             student.RegisteredFailed("Registration Time expired!");

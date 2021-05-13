@@ -78,11 +78,11 @@ public class Server {
             pImp.uploadExam(pathInput.nextLine());
 
             registry.bind("EXAM", pImp);
-            System.out.print("Beginning registering...");
+            System.out.print("Beginning registering...\n");
             interrupt1.start();
             synchronized (obj1) {
                 while (!start) {
-                    System.out.print("Write \"" + startWord1 + "\" to start the exam");
+                    System.out.print("Write \"" + startWord1 + "\" to start the exam\n");
                     obj1.wait();
                 }
             }
@@ -93,12 +93,12 @@ public class Server {
 
             Examination examination = new Examination(pImp);
             examination.start();
-            System.out.print("The exam starts now! Good Luck");
+            System.out.print("The exam starts now! Good Luck\n");
             start = false;
             interrupt2.start();
             synchronized (obj2) {
                 while (!start) {
-                    System.out.print("Write \"" + startWord2 + "\" to finish the exam");
+                    System.out.print("Write \"" + startWord2 + "\" to finish the exam\n");
                     obj2.wait();
                 }
             }
@@ -106,7 +106,7 @@ public class Server {
             pImp.examFinished();
 
             HashMap<String, Exam> examsCompleted = examination.finishExam();
-            System.out.print("The exam session finished!");
+            System.out.print("The exam session finished!\n");
 
             FinalExamsFile.storeExam("marks.csv", examsCompleted);
 

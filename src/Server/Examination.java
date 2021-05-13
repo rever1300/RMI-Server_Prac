@@ -26,12 +26,15 @@ public class Examination extends Thread {
                     }
                 }
             }
-            System.out.print("All students have finished!!");
-        }catch (Exception e){
-            System.err.print("A server error ocurred!");
+            System.out.print("All students have finished!!\n");
+        } catch (InterruptedException e) {
+            System.out.print("EXAM FINISHED!\n");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    public HashMap<String, Exam> finishExam(){
+
+    public HashMap<String, Exam> finishExam() {
         return this.pImp.getExams();
     }
 }
