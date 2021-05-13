@@ -22,7 +22,7 @@ public class ParserCSV {
             data = row.split(";");
             int questionNumber = questions.size() + 1;
             String QT = data[0];
-            List<String> choices = new ArrayList<>(Arrays.asList(data).subList(1, data.length - 1));
+            List<String> choices = new ArrayList<>(Arrays.asList(data).subList(0, data.length - 1));
             QuestionsLike question = new QuestionsLike(questionNumber, QT, choices);
             answers.put(questionNumber, Integer.parseInt(data[data.length - 1]));
             questions.add(question);

@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 
 public interface ProfessorInt extends Remote {
     void register(StudentInt student, String name) throws RemoteException;
-    void sendAnswer(String student, QuestionsLike questionsLike);
+    void sendAnswer(String student, QuestionsLike questionsLike) throws RemoteException;
 }

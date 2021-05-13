@@ -74,7 +74,7 @@ public class Server {
             Registry registry = startRegistry(null);
             ProfessorImpl pImp = new ProfessorImpl();
 
-            System.out.print("Server initializing");
+            System.out.print("Server initializing\n");
             pImp.uploadExam(pathInput.nextLine());
 
             registry.bind("EXAM", pImp);

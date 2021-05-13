@@ -44,7 +44,7 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
         this.registry = false;
     }
 
-    public void startExam() {
+    public void startExam() throws RemoteException {
         for (Map.Entry<String, StudentInt> studentSet : this.students.entrySet()) {
             String studentID = studentSet.getKey();
             StudentInt student = studentSet.getValue();
@@ -96,7 +96,7 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
         }
     }
 
-    public void nextQuestion(String student) {
+    public void nextQuestion(String student) throws RemoteException {
         this.students.get(student).sendQuestion(this.studentExams.get(student).nextQuestion());
     }
 
@@ -105,7 +105,7 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
     }
 
     @Override
-    public synchronized void register(StudentInt student, String name){
+    public synchronized void register(StudentInt student, String name) throws RemoteException {
         if (this.registry) {
             this.students.put(name,student);
             this.numberOfStudents++;
