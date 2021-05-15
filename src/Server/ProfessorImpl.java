@@ -87,11 +87,6 @@ public class ProfessorImpl extends UnicastRemoteObject implements ProfessorInt {
 
     }
 
-    public synchronized void examFinishedInterrupted(String student){
-        this.examsIP--;
-        examFinished(student);
-    }
-
     public synchronized void examFinished(String student) {
         try {
             this.students.get(student).examFinished((this.studentExams.get(student).getMark()), "YOUR EXAM HAS FINISHED!!");
