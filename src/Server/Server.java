@@ -108,7 +108,7 @@ public class Server {
             HashMap<String, Exam> examsCompleted = examination.finishExam();
             System.out.print("The exam session finished!\n");
 
-            FinalExamsFile.storeExam("marks.csv", examsCompleted);
+            FinalExamsFile.storeExam("marks.txt", examsCompleted);
 
         } catch (Exception e) {
             System.err.println("Server exception" + e.toString());
